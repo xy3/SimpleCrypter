@@ -12,6 +12,7 @@ namespace SimpleCrypter
         {
             InitializeComponent();
             tb_password.Text = RandomString(15);
+            tb_outdir.Text = Directory.GetCurrentDirectory();
         }
 
         private static Random random = new Random();
@@ -30,10 +31,11 @@ namespace SimpleCrypter
             if (tb_password.Text.Length == 0)
                 lbl_status.Text = "Enter a password.";
 
+            string outfile = tb_outdir.Text + tb_outfile.Text;
             try
             {
-                encrypt(tb_file.Text, tb_password.Text, tb_outdir.Text);
-                lbl_status.Text = "Successfully encrypted the file.";
+                encrypt(tb_file.Text, tb_password.Text, outfile);
+                lbl_status.Text = "Successfully encrypted the file." + $"\nSaved file to: {outfile}";
             }
             catch (Exception)
             {
