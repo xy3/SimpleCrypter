@@ -33,25 +33,20 @@
             this.btn_encrypt = new System.Windows.Forms.Button();
             this.tb_file = new System.Windows.Forms.TextBox();
             this.tb_password = new System.Windows.Forms.TextBox();
-            this.tb_outdir = new System.Windows.Forms.TextBox();
             this.btn_file = new System.Windows.Forms.Button();
-            this.btn_outfile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btn_randpw = new System.Windows.Forms.Button();
             this.lbl_status = new System.Windows.Forms.Label();
             this.folder_dialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_outfile = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // filedialog
             // 
             this.filedialog.FileName = "File to encrypt";
-            this.filedialog.Filter = "Executable Files (*.exe;*.dll)|*.exe;*.dll";
             // 
             // btn_encrypt
             // 
@@ -89,16 +84,6 @@
             this.tb_password.Size = new System.Drawing.Size(315, 26);
             this.tb_password.TabIndex = 2;
             // 
-            // tb_outdir
-            // 
-            this.tb_outdir.BackColor = System.Drawing.Color.Black;
-            this.tb_outdir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_outdir.ForeColor = System.Drawing.Color.White;
-            this.tb_outdir.Location = new System.Drawing.Point(32, 144);
-            this.tb_outdir.Name = "tb_outdir";
-            this.tb_outdir.Size = new System.Drawing.Size(315, 26);
-            this.tb_outdir.TabIndex = 3;
-            // 
             // btn_file
             // 
             this.btn_file.BackColor = System.Drawing.Color.Black;
@@ -114,22 +99,6 @@
             this.btn_file.Text = "Choose";
             this.btn_file.UseVisualStyleBackColor = false;
             this.btn_file.Click += new System.EventHandler(this.btn_file_Click);
-            // 
-            // btn_outfile
-            // 
-            this.btn_outfile.BackColor = System.Drawing.Color.Black;
-            this.btn_outfile.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btn_outfile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btn_outfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_outfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_outfile.ForeColor = System.Drawing.Color.White;
-            this.btn_outfile.Location = new System.Drawing.Point(353, 144);
-            this.btn_outfile.Name = "btn_outfile";
-            this.btn_outfile.Size = new System.Drawing.Size(80, 26);
-            this.btn_outfile.TabIndex = 5;
-            this.btn_outfile.Text = "Choose";
-            this.btn_outfile.UseVisualStyleBackColor = false;
-            this.btn_outfile.Click += new System.EventHandler(this.btn_outfile_Click);
             // 
             // label1
             // 
@@ -154,18 +123,6 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Password";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(32, 128);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Output Dir";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btn_randpw
             // 
@@ -198,28 +155,6 @@
             // 
             this.folder_dialog.Description = "Select output location";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(32, 173);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Output filename";
-            // 
-            // tb_outfile
-            // 
-            this.tb_outfile.BackColor = System.Drawing.Color.Black;
-            this.tb_outfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_outfile.ForeColor = System.Drawing.Color.White;
-            this.tb_outfile.Location = new System.Drawing.Point(32, 189);
-            this.tb_outfile.Name = "tb_outfile";
-            this.tb_outfile.Size = new System.Drawing.Size(315, 26);
-            this.tb_outfile.TabIndex = 12;
-            this.tb_outfile.Text = "crypted.exe";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -238,16 +173,11 @@
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(465, 293);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.tb_outfile);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lbl_status);
             this.Controls.Add(this.btn_randpw);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btn_outfile);
             this.Controls.Add(this.btn_file);
-            this.Controls.Add(this.tb_outdir);
             this.Controls.Add(this.tb_password);
             this.Controls.Add(this.tb_file);
             this.Controls.Add(this.btn_encrypt);
@@ -269,18 +199,14 @@
         private System.Windows.Forms.Button btn_encrypt;
         private System.Windows.Forms.TextBox tb_file;
         private System.Windows.Forms.TextBox tb_password;
-        private System.Windows.Forms.TextBox tb_outdir;
         private System.Windows.Forms.Button btn_file;
-        private System.Windows.Forms.Button btn_outfile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_randpw;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.FolderBrowserDialog folder_dialog;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tb_outfile;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

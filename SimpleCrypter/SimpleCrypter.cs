@@ -12,7 +12,6 @@ namespace SimpleCrypter
         {
             InitializeComponent();
             tb_password.Text = RandomString(15);
-            tb_outdir.Text = Directory.GetCurrentDirectory();
         }
 
         private static Random random = new Random();
@@ -24,17 +23,15 @@ namespace SimpleCrypter
 
         private void btn_encrypt_Click(object sender, EventArgs e)
         {
+            lbl_status.Text = "Encrypting...";
             if (!File.Exists(tb_file.Text))
                 lbl_status.Text = "The file does not exist.";
-            if (tb_outfile.Text.Length == 0)
-                lbl_status.Text = "Enter an output filename.";
             if (tb_password.Text.Length == 0)
                 lbl_status.Text = "Enter a password.";
 
-            string outfile = tb_outdir.Text + tb_outfile.Text;
             try
             {
-                encrypt(tb_file.Text, tb_password.Text, outfile);
+                string outfile = encrypt(tb_file.Text, tb_password.Text);
                 lbl_status.Text = "Successfully encrypted the file." + $"\nSaved file to: {outfile}";
             }
             catch (Exception)
@@ -43,12 +40,17 @@ namespace SimpleCrypter
             }
         }
 
-        private void encrypt(String file, String pass, String outfile)
+        private string encrypt(String file, String pass)
         {
             byte[] plainBytes = File.ReadAllBytes(file);
             byte[] encodedBytes = encodeBytes(plainBytes, pass);
 
-            File.WriteAllBytes(outfile, encodedBytes);
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllBytes(saveFileDialog.FileName, encodedBytes);
+            }
+
+            return saveFileDialog.FileName;
         }
 
         private static byte[] encodeBytes(byte[] bytes, String pass)
@@ -73,14 +75,6 @@ namespace SimpleCrypter
             if (filedialog.ShowDialog() == DialogResult.OK)
             {
                 tb_file.Text = filedialog.FileName;
-            }
-        }
-
-        private void btn_outfile_Click(object sender, EventArgs e)
-        {
-            if (folder_dialog.ShowDialog() == DialogResult.OK)
-            {
-                tb_outdir.Text = folder_dialog.SelectedPath;
             }
         }
     }
